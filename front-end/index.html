@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadat's Anime Shelf - Premium Collection</title>
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts: Premium Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layouts.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+</head>
+
+<body>
+    <!-- Performance Optimized Backgrounds -->
+    <div class="app-background"></div>
+    <div class="app-overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- Changed desktop icon to a star -->
+                    <i class="fas fa-star logo-icon"></i>
+                    <h1>Sadat's Anime Shelf</h1>
+                </div>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#main-content">My List</a></li>
+                        <li><a href="#top-10-list">My Favorite</a></li>
+                        <li><a href="#footer">About</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <!-- Database Status Indicator -->
+                    <div id="dbStatus" class="status-indicator" title="Checking connection...">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Checking...</span>
+                    </div>
+
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle-btn" id="themeToggleBtn">
+                        <i class="fas fa-moon"></i> <!-- Moon icon for dark mode -->
+                    </button>
+                    <!-- Removed Search icon button as requested -->
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="animated-text">Welcome to My Anime Collection</h2>
+                <p>Track all the series I've watched, currently watching, and plan to watch. Join me on this amazing
+                    journey through the world of anime!</p>
+                <button class="cta-button">Browse Collection</button>
+            </div>
+            <div class="hero-image-container">
+                <img src="images/oetsu4.jfif" alt="Oetsu image" class="hero-anime-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <!-- Total Anime -->
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-layer-group stat-icon" style="color: var(--premium-purple);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stat-total" data-target="0">0</div>
+                        <div class="stat-label">Total Anime</div>
+                    </div>
+                </div>
+
+                <!-- Watching -->
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-eye stat-icon" style="color: var(--premium-blue);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stat-watching" data-target="0">0</div>
+                        <div class="stat-label">Watching</div>
+                    </div>
+                </div>
+
+                <!-- Completed -->
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-check-circle stat-icon" style="color: var(--premium-teal);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stat-completed" data-target="0">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                </div>
+
+                <!-- Plan to Watch -->
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-bookmark stat-icon" style="color: var(--premium-pink);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stat-plan" data-target="0">0</div>
+                        <div class="stat-label">Plan to Watch</div>
+                    </div>
+                </div>
+
+                <!-- Favorites (Top 10) -->
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-star stat-icon" style="color: var(--gradient-warning);"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stat-favorites" data-target="0">0</div>
+                        <div class="stat-label">Favorites</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Anime Watchlist</h2>
+            </div>
+            <p style="margin-bottom: 30px; color: var(--text-secondary); max-width: 800px;">
+                This is my personal collection of anime series that I've watched, currently watching, or plan to watch.
+                I rate each one based on my personal experience and enjoyment.
+            </p>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="watching">Watching</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="plan">Plan to Watch</button>
+
+                <div class="view-controls" style="margin-left: auto; display: flex; gap: 0.5rem;">
+                    <button class="view-btn active" data-view="grid" title="Grid View">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="anime-grid" id="animeGrid">
+                <!-- Anime cards will be dynamically loaded from the backend -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Top 10 List Section -->
+    <section class="top-10-list main-content" id="top-10-list">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Top 10 Anime</h2>
+            </div>
+            <ol class="anime-ranking" id="top10List">
+                <li class="top-anime-item" data-title="One Piece" data-image="images/favorite/op.jfif"
+                    data-description="Monkey D. Luffy, a boy whose body gained the properties of rubber after unintentionally eating a Devil Fruit, journeys with his diverse crew of pirates, named the Straw Hat Pirates, to explore the Grand Line in search of the mythical treasure, the One Piece, to become the next Pirate King."
+                    data-imdb-rating="8.9" data-episodes="1000+" data-seasons="20+"
+                    data-genres="Action, Adventure, Fantasy">
+                    <img src="images/favorite/op.jfif" alt="One Piece" class="top-anime-image">
+                    <span>One Piece</span>
+                </li>
+                <li class="top-anime-item" data-title="Hunter x Hunter" data-image="images/favorite/hxh.jfif"
+                    data-description="Gon Freecss, a young boy, discovers that his father, who he was told was dead, is actually a world-renowned Hunter. Gon leaves his home to follow in his father's footsteps, taking the Hunter Examination, where he meets and befriends three other applicants: Kurapika, Leorio, and Killua."
+                    data-imdb-rating="9.0" data-episodes="148" data-seasons="6"
+                    data-genres="Action, Adventure, Fantasy">
+                    <img src="images/favorite/hxh.jfif" alt="Hunter x Hunter" class="top-anime-image">
+                    <span>Hunter x Hunter</span>
+                </li>
+                <li class="top-anime-item" data-title="Naruto" data-image="images/favorite/naruto.jfif"
+                    data-description="Naruto Uzumaki, a mischievous adolescent ninja, struggles as he searches for recognition and dreams of becoming the Hokage, his village's leader and strongest ninja."
+                    data-imdb-rating="8.3" data-episodes="220" data-seasons="9"
+                    data-genres="Action, Adventure, Fantasy">
+                    <img src="images/favorite/naruto.jfif" alt="Naruto" class="top-anime-image">
+                    <span>Naruto</span>
+                </li>
+                <li class="top-anime-item" data-title="Kingdom" data-image="images/favorite/kingdom.jfif"
+                    data-description="In ancient China, during the Warring States period, a young orphan named Shin dreams of becoming a 'Great General of the Heavens' and unifying China for the first time in 500 years."
+                    data-imdb-rating="8.6" data-episodes="129+" data-seasons="4+"
+                    data-genres="Action, Historical, Military">
+                    <img src="images/favorite/kingdom.jfif" alt="Kingdom" class="top-anime-image">
+                    <span>Kingdom</span>
+                </li>
+                <li class="top-anime-item" data-title="Attack on Titan" data-image="images/favorite/aot.jfif"
+                    data-description="Humanity lives within cities surrounded by enormous walls that protect them from gigantic humanoid creatures referred to as Titans. The story follows Eren Yeager, who vows to exterminate the Titans after they destroy his hometown and cause the death of his mother."
+                    data-imdb-rating="9.1" data-episodes="89" data-seasons="4"
+                    data-genres="Action, Dark Fantasy, Post-Apocalyptic">
+                    <img src="images/favorite/aot.jfif" alt="Attack on Titan" class="top-anime-image">
+                    <span>Attack on Titan</span>
+                </li>
+                <li class="top-anime-item" data-title="Vinland Saga" data-image="images/favorite/vinland.jfif"
+                    data-description="Thorfinn, a young Viking warrior, seeks revenge on the mercenary leader Askeladd, who murdered his father. He joins Askeladd's band and travels across Europe, witnessing the brutality of war and searching for a peaceful land called Vinland."
+                    data-imdb-rating="8.8" data-episodes="48" data-seasons="2"
+                    data-genres="Action, Adventure, Historical">
+                    <img src="images/favorite/vinland.jfif" alt="Vinland Saga" class="top-anime-image">
+                    <span>Vinland Saga</span>
+                </li>
+                <li class="top-anime-item" data-title="My Hero Academia" data-image="images/favorite/mha.jfif"
+                    data-description="In a world where superpowers (called 'Quirks') are common, Izuku Midoriya dreams of becoming a hero despite being born without a Quirk. His life changes when he meets the legendary hero All Might, who shares his own Quirk with Izuku."
+                    data-imdb-rating="8.0" data-episodes="138+" data-seasons="6+"
+                    data-genres="Action, Comedy, Superhero">
+                    <img src="images/favorite/mha.jfif" alt="My Hero Academia" class="top-anime-image">
+                    <span>My Hero Academia</span>
+                </li>
+                <li class="top-anime-item" data-title="Yu-Gi-Oh!" data-image="images/favorite/ygi.jfif"
+                    data-description="Yugi Muto, a shy boy, solves the Millennium Puzzle, an ancient Egyptian artifact. He awakens a powerful alter ego, Yami Yugi, who helps him overcome challenges through card games, particularly Duel Monsters."
+                    data-imdb-rating="7.2" data-episodes="224" data-seasons="5"
+                    data-genres="Adventure, Fantasy, Card Game">
+                    <img src="images/favorite/ygi.jfif" alt="Yu-Gi-Oh!" class="top-anime-image">
+                    <span>Yu-Gi-Oh!</span>
+                </li>
+                <li class="top-anime-item" data-title="Bleach" data-image="images/favorite/bleach.jfif"
+                    data-description="Ichigo Kurosaki, a teenager who can see ghosts, gains the powers of a Soul Reaper from Rukia Kuchiki and takes on the duty of guiding souls to the afterlife and defending humans from Hollows."
+                    data-imdb-rating="8.2" data-episodes="366" data-seasons="16"
+                    data-genres="Action, Adventure, Supernatural">
+                    <img src="images/favorite/bleach.jfif" alt="Bleach" class="top-anime-image">
+                    <span>Bleach</span>
+                </li>
+                <li class="top-anime-item" data-title="Jujutsu Kaisen" data-image="images/favorite/jjk.jfif"
+                    data-description="Yuji Itadori, a high school student, is caught in a supernatural battle when he swallows a cursed object to save his friends. He then joins a secret organization of Jujutsu Sorcerers to fight curses and becomes entangled in the world of curses and sorcery."
+                    data-imdb-rating="8.7" data-episodes="47+" data-seasons="2+"
+                    data-genres="Action, Dark Fantasy, Supernatural">
+                    <img src="images/favorite/jjk.jfif" alt="Jujutsu Kaisen" class="top-anime-image">
+                    <span>Jujutsu Kaisen</span>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sadat's Anime Shelf</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                        Thanks for visiting my personal anime collection! This is where I track my anime journey and
+                        share my thoughts on different series.
+                    </p>
+                    <div class="social-links">
+                        <!-- Updated Instagram link -->
+                        <a href="https://www.instagram.com/sdrk_66" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Added Telegram link -->
+                        <a href="https://t.me/sdrk_66" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <!-- Added GitHub link -->
+                        <a href="https://github.com/s-a-d-a-t" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#main-content">My List</a></li>
+                        <li><a href="#top-10-list">My Favorite</a></li>
+                        <li><a href="#footer">About</a></li>
+                        <li><a href="https://github.com/s-a-d-a-t" target="_blank">GitHub</a></li>
+                        <!-- Added GitHub to quick links -->
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Genres</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Adventure</a></li>
+                        <li><a href="#">Comedy</a></li>
+                        <li><a href="#">Drama</a></li>
+                        <li><a href="#">Fantasy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <!-- Updated contact information -->
+                        <li><i class="fas fa-envelope"></i> sdrkk66@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Ethiopia, Adama</li>
+                        <li><i class="fas fa-phone"></i> +2519xxxxxxxx</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2023 Sadat's Anime Shelf. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add New Anime Button -->
+    <button class="add-anime-btn" id="addAnimeBtn">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeSearchModal">&times;</span>
+            <h2>Search Anime</h2>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="Search anime by title...">
+                <button id="searchModalBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div id="searchResults" class="search-results-grid">
+                <!-- Search results will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Anime Modal -->
+    <div id="addAnimeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeAddAnimeModal">&times;</span>
+            <h2>Add New Anime</h2>
+            <form id="addAnimeForm">
+                <div class="form-group">
+                    <label for="animeTitle">Title:</label>
+                    <input type="text" id="animeTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="animeImage">Image URL:</label>
+                    <input type="url" id="animeImage" placeholder="e.g., https://example.com/anime.jpg">
+                </div>
+                <div class="form-group">
+                    <label for="animeEpisodes">Total Episodes:</label>
+                    <input type="number" id="animeEpisodes" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="animeWatched">Episodes Watched:</label>
+                    <input type="number" id="animeWatched" min="0" value="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="animeStatus">Status:</label>
+                    <select id="animeStatus" required>
+                        <option value="watching">Watching</option>
+                        <option value="completed">Completed</option>
+                        <option value="plan">Plan to Watch</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="animeGenres">Genres (comma-separated):</label>
+                    <input type="text" id="animeGenres" placeholder="e.g., Action, Drama, Fantasy">
+                </div>
+                <div class="form-group">
+                    <label for="animeDescription">Description:</label>
+                    <textarea id="animeDescription" rows="5"
+                        placeholder="A brief description of the anime..."></textarea>
+                </div>
+                <button type="submit" class="cta-button">Add Anime</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Anime Detail Modal -->
+    <div id="animeDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeAnimeDetailModal">&times;</span>
+            <div id="animeDetailContent">
+                <!-- Anime details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Script - Unified for Compatibility -->
+    <script src="script.js"></script>
+</body>
+
+</html>

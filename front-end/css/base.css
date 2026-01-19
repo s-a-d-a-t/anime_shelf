@@ -1,0 +1,201 @@
+/* ========================================
+   BASE STYLES - Root Variables & Resets
+   ======================================== */
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root Variables - Design Tokens */
+:root {
+    /* Premium Gradient Colors */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+
+    /* Solid Premium Colors */
+    --premium-purple: #7c3aed;
+    --premium-pink: #ec4899;
+    --premium-blue: #3b82f6;
+    --premium-teal: #14b8a6;
+    --premium-gold: #fbbf24;
+    --premium-coral: #ff6b6b;
+
+    /* Glassmorphism */
+    --glass-bg: rgba(20, 20, 30, 0.6);
+    --glass-bg-light: rgba(40, 40, 60, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Dark Theme Base (Default) */
+    --dark: #0a0a0f;
+    --dark-light: #161625;
+    --dark-lighter: #1f1f35;
+
+    /* Text */
+    --text-primary: #ffffff;
+    --text-secondary: #c0c0d8;
+    --text-muted: #8e8ea9;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --radius-full: 50px;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.4);
+
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+    --dark: #f0f2f5;
+    --dark-light: #ffffff;
+    --dark-lighter: #e4e6eb;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a4a68;
+    --text-muted: #6b6b7b;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-bg-light: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.25);
+}
+
+/* Base HTML & Body */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: color var(--transition-base);
+    position: relative;
+    /* Removed background-image from body to prevent repaint issues */
+}
+
+/* Optimized Background Implementation */
+.app-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: url('../images/anime_dark_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* No attachment: fixed needed on a fixed element */
+}
+
+/* Overlay for readability - Optimized: Removed backdrop-filter */
+.app-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: rgba(10, 10, 15, 0.85);
+    /* Dark overlay */
+    pointer-events: none;
+}
+
+[data-theme="light"] .app-overlay {
+    background: rgba(240, 242, 245, 0.7);
+}
+
+/* Typography Base */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Outfit', 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Selection */
+::selection {
+    background: var(--premium-purple);
+    color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Focus Visible */
+*:focus-visible {
+    outline: 2px solid var(--premium-purple);
+    outline-offset: 2px;
+}
